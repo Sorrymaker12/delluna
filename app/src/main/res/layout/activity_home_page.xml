@@ -1,23 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FED45E"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".HomePage">
+
     <TextView
+        android:id="@+id/TV_welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DELLUNA"
-        android:layout_marginVertical="10dp"
-        />
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="30dp"
+        android:text="Welcome,"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
     <TextView
         android:id="@+id/TV_Welcome"
+        android:layout_below="@id/TV_welcomeText"
+        android:layout_alignLeft="@id/TV_welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Weewoo peepoo"
+        android:textSize="39dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
         />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/BTN_lookitem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TV_Welcome"
+        android:layout_alignLeft="@id/TV_Welcome"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/orangeDark"
+        android:paddingHorizontal="40dp"
+        android:text="LOOK FOR ITEMS"
+        android:textSize="13sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/BTN_lookitem"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_bannerTitle1"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:paddingVertical="10dp"
+            android:text="@string/app_bannerTitle2"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/VP_imgSlide"/>
+    </LinearLayout>
+</RelativeLayout>
