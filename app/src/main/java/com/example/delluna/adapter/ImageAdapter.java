@@ -1,48 +1,63 @@
 package com.example.delluna.adapter;
 
-import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.delluna.R;
+import com.makeramen.roundedimageview.RoundedImageView;
 
-public class ImageAdapter extends PagerAdapter {
-    Context context;
-    Button left, right;
-    int[] images = new int[]{R.drawable.slide1, R.drawable.slide2, R.drawable.slide3, R.drawable.slide4, R.drawable.slide5};
-    public ImageAdapter(Context context, Button left, Button right){
-        this.context = context;
-        this.left = left;
-        this.right = right;
-    }
-    @Override
-    public int getCount() {
-        return images.length;
-    }
+import java.util.List;
 
-    @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull  Object object) {
-        return view == object;
+public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
+
+    List<Image> images;
+    ViewPager2 viewPager2;
+
+    public ImageAdapter(List<Image> images, ViewPager2 viewPager2){
+        this.images = images;
+        this.viewPager2=viewPager2;
     }
 
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        ImageView imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageView.setImageResource(images[position]);
-        container.addView(imageView, 0);
-
-
-        return imageView;
+    public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_container, parent, false);
+        return new ImageViewHolder(view);
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((ImageView)object);
+    public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
+        holder.imageView.setImageResource(images.get(position).getImage());
+        if(position == images.size()-2){
+            viewPager2.post(imageRunnable);
+        }
     }
+
+    @Override
+    public int getItemCount() {
+        return images.size();
+    }
+
+    public class ImageViewHolder extends RecyclerView.ViewHolder{
+        RoundedImageView imageView;
+        public ImageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imageView = itemView.findViewById(R.id.imageContainer);
+        }
+    }
+
+    public Runnable imageRunnable = new Runnable() {
+        @Override
+        public void run() {
+            images.addAll(images);
+            notifyDataSetChanged();
+        }
+    };
+
 }
