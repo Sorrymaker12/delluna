@@ -16,7 +16,7 @@ public class HomePage extends AppCompatActivity {
 
     TextView TV_Welcome;
     Bundle Extras;
-    Button btnLookItem;
+    Button btnLookItem, btnImageNext, btnImagePrevious;
 
     ViewPager vpImage;
     ImageAdapter imageAdapter;
@@ -49,8 +49,10 @@ public class HomePage extends AppCompatActivity {
         init();
 
         //imageSlide
+        btnImageNext = findViewById(R.id.BTN_imageNext);
+        btnImagePrevious = findViewById(R.id.BTN_imagePrevious);
         vpImage = findViewById(R.id.VP_imgSlide);
-        imageAdapter = new ImageAdapter(this);
+        imageAdapter = new ImageAdapter(this, btnImagePrevious, btnImageNext);
         vpImage.setAdapter(imageAdapter);
     }
 }

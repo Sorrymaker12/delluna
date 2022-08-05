@@ -12,10 +12,10 @@
         android:id="@+id/TV_welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="30dp"
         android:text="Welcome,"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
 
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Weewoo peepoo"
-        android:textSize="39dp"
+        android:textSize="32sp"
         android:textStyle="bold"
         android:textColor="@color/white"
         />
@@ -37,8 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/TV_Welcome"
         android:layout_alignLeft="@id/TV_Welcome"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/orangeDark"
         android:paddingHorizontal="40dp"
         android:text="LOOK FOR ITEMS"
@@ -66,9 +66,35 @@
             android:paddingVertical="10dp"
             android:text="@string/app_bannerTitle2"/>
 
-        <androidx.viewpager.widget.ViewPager
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/VP_imgSlide"/>
+            android:layout_height="wrap_content">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/VP_imgSlide"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp" />
+
+            <Button
+                android:id="@+id/BTN_imagePrevious"
+                android:layout_width="55dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginVertical="110dp"
+                android:drawableLeft="@drawable/ic_action_left"
+                android:backgroundTint="@color/grey"
+                android:alpha="0.20"/>
+
+            <Button
+                android:id="@+id/BTN_imageNext"
+                android:layout_width="55dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="290dp"
+                android:layout_marginVertical="110dp"
+                android:drawableLeft="@drawable/ic_action_name"
+                android:backgroundTint="@color/grey"
+                android:alpha="0.20"/>
+
+        </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>
