@@ -7,10 +7,45 @@
     tools:context=".ItemPage"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/linear_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:paddingHorizontal="16dp"
+        android:backgroundTint="#FED45E"
+        android:background="#FED45E"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBaseline_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/menu_burger"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:tint="@color/white"
+            android:src="@drawable/ic_baseline_menu_24">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/about_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="24dp"
+            android:text="Product List"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@color/white">
+        </TextView>
+
+    </LinearLayout>
+
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tlTab"/>
+        android:id="@+id/tlTab"
+        app:tabIndicatorColor="#FED45E"
+        app:tabTextColor="#333333"
+        app:tabIndicatorHeight="4dp" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
