@@ -3,6 +3,8 @@ package com.example.delluna;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,13 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Content1 extends Fragment {
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter rvAdapter;
+    RecyclerView.LayoutManager layoutManager;
+    String[] pPrice = {"Rp 962.260", "Rp 740.770", "Rp 518.539", "Rp 828.000", "Rp 677.000", "Rp 305.000"};
+    String[] pname = {"BTS - Love Yourself Hoodie", "EXO - Don't Mess Up My Tempo Hoodie", "NCT 127 - Neo Zone Short Sleeve T shirts", "KAI - Short Sleeve T Shirts with Photo Tag", "WayV - 3rd Anniversary T-Shirt", "Red Velvet - Really Bad Boy White T-Shirt"};
+    int[] pImage = {R.drawable.bts_hoodie, R.drawable.exo_hoodie, R.drawable.nct127_cloth, R.drawable.kai_cloth, R.drawable.wayv_cloth, R.drawable.rv_cloth};
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +45,8 @@ public class Content1 extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment Content1.
      */
+
+
     // TODO: Rename and change types and number of parameters
     public static Content1 newInstance(String param1, String param2) {
         Content1 fragment = new Content1();
@@ -53,12 +64,22 @@ public class Content1 extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_content1, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_content1, container, false);
+
+        // Add the following lines to create RecyclerView
+        recyclerView = view.findViewById(R.id.rv1);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        rvAdapter = new rvAdapter(getActivity(), pPrice, pImage);
+        recyclerView.setAdapter(rvAdapter);
+        return view;
     }
 }
