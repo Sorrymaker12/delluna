@@ -44,6 +44,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         return images.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     public class ImageViewHolder extends RecyclerView.ViewHolder{
         RoundedImageView imageView;
         public ImageViewHolder(@NonNull View itemView) {

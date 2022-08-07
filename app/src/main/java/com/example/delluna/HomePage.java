@@ -30,6 +30,7 @@ public class HomePage extends AppCompatActivity {
     List<Image> images;
     ImageAdapter imageAdapter;
     Handler sliderHandler = new Handler();
+    int index;
 
     void init () {
         TV_Welcome = findViewById(R.id.TV_Welcome);
@@ -79,7 +80,43 @@ public class HomePage extends AppCompatActivity {
                 sliderHandler.postDelayed(sliderRunnable, 5000);
             }
         });
+
+        //next and prev button
+        initButtons();
     }
+
+    public void initButtons(){
+        index=0;
+        btnImageNext = findViewById(R.id.BTN_imageNext);
+        btnImagePrevious = findViewById(R.id.BTN_imagePrevious);
+
+        btnImageNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                next();
+            }
+        });
+
+        btnImagePrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prev();
+            }
+        });
+    }
+
+    public void next(){
+        index++;
+        if(index>=imageAdapter.getItemCount()) index=0;
+        viewPager2.setCurrentItem(index);
+    }
+
+    public void prev(){
+        if(index<=0) index=imageAdapter.getItemCount();
+        else index--;
+        viewPager2.setCurrentItem(index);
+    }
+
 
     public Runnable sliderRunnable = new Runnable() {
         @Override
