@@ -21,7 +21,16 @@ public class rvAdapter extends RecyclerView.Adapter<rvAdapter.ViewHolder> {
     String[] pName;
     int[] pImage;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    private rvClickListener listener;
+
+    public rvAdapter (Context context, String[] pName, String[] pPrice, int[] pImage, rvClickListener listener) {
+        this.context = context;
+        this.pName = pName;
+        this.pPrice = pPrice;
+        this.pImage = pImage;
+        this.listener = listener;
+    }
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView pPrice;
         ImageView pImage;
 
@@ -29,14 +38,16 @@ public class rvAdapter extends RecyclerView.Adapter<rvAdapter.ViewHolder> {
             super(itemView);
             pPrice = itemView.findViewById(R.id.pPrice);
             pImage = itemView.findViewById(R.id.pImage);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View itemView) {
+            listener.onClick(itemView, getAdapterPosition());
         }
     }
 
-    public rvAdapter (Context context, String[] pPrice, int[] pImage) {
-        this.context = context;
-        this.pPrice = pPrice;
-        this.pImage = pImage;
-    }
+
 
     @NonNull
     @Override
@@ -56,5 +67,9 @@ public class rvAdapter extends RecyclerView.Adapter<rvAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return pPrice.length;
+    }
+
+    public interface rvClickListener{
+        void onClick(View v, int position);
     }
 }

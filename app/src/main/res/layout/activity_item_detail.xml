@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemPage"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,8 +12,7 @@
         android:backgroundTint="#FED45E"
         android:background="#FED45E"
         android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBaseline_toTopOf="parent">
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/menu_burger"
@@ -31,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="24dp"
-            android:text="Product List"
+            android:text="Product Detail"
             android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="@color/white">
@@ -39,21 +35,41 @@
 
     </LinearLayout>
 
-    <com.google.android.material.tabs.TabLayout
+    <ImageView
+        android:id="@+id/IV_itemImg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tlTab"
-        app:tabIndicatorColor="#FED45E"
-        app:tabTextColor="#333333"
-        app:tabIndicatorHeight="4dp" />
+        android:layout_height="310dp"
+        android:src="@drawable/slide3"/>
 
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        -->
-<!--        android:id="@+id/vpFragment"/>-->
-    <androidx.viewpager2.widget.ViewPager2
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/vpFragment"/>
+    <TextView
+        android:id="@+id/TV_itemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rp 1000.000"
+        android:textSize="35sp"
+        android:textColor="@color/orangeDark"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/TV_itemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AESPA"
+        android:textSize="20sp"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/ET_itemQty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Quantity"/>
+
+    <Button
+        android:id="@+id/BTN_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/orangeDark"
+        android:layout_gravity="center"
+        android:text="BUY"/>
 </LinearLayout>

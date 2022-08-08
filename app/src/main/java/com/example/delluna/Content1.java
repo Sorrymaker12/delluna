@@ -1,5 +1,6 @@
 package com.example.delluna;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,10 +16,11 @@ import android.view.ViewGroup;
  * Use the {@link Content1#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Content1 extends Fragment {
+public class Content1 extends Fragment{
 
     RecyclerView recyclerView;
     RecyclerView.Adapter rvAdapter;
+    rvAdapter.rvClickListener listener;
     RecyclerView.LayoutManager layoutManager;
     String[] pPrice = {"Rp 962.260", "Rp 740.770", "Rp 518.539", "Rp 828.000", "Rp 677.000", "Rp 305.000"};
     String[] pname = {"BTS - Love Yourself Hoodie", "EXO - Don't Mess Up My Tempo Hoodie", "NCT 127 - Neo Zone Short Sleeve T shirts", "KAI - Short Sleeve T Shirts with Photo Tag", "WayV - 3rd Anniversary T-Shirt", "Red Velvet - Really Bad Boy White T-Shirt"};
@@ -75,11 +77,25 @@ public class Content1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_content1, container, false);
 
         // Add the following lines to create RecyclerView
+        setOnClickListener();
         recyclerView = view.findViewById(R.id.rv1);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        rvAdapter = new rvAdapter(getActivity(), pPrice, pImage);
+        rvAdapter = new rvAdapter(getActivity(), pname, pPrice, pImage, listener);
         recyclerView.setAdapter(rvAdapter);
         return view;
+    }
+
+    private void setOnClickListener() {
+        listener = new rvAdapter.rvClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getContext(),ItemDetail.class);
+                intent.putExtra("name", pname[position]);
+                intent.putExtra("price", pPrice[position]);
+                intent.putExtra("image", pImage[position]);
+                startActivity(intent);
+            }
+        };
     }
 }
